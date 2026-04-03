@@ -18,6 +18,7 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-default-key-change-me-in
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=True)
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=['https://*.run.app'])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,16 +67,16 @@ DATABASES = {
     'default': env.db('DATABASE_URL', default=f'sqlite:///{BASE_DIR}/db.sqlite3')
 }
  
-# Redis Cache Configuration
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env('REDIS_URL', default='redis://127.0.0.1:6379/1'),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
+# # Redis Cache Configuration
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": env('REDIS_URL', default='redis://127.0.0.1:6379/1'),
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
  
 
 AUTH_PASSWORD_VALIDATORS = [
